@@ -9,7 +9,10 @@ const app = express();
 app.set("trust proxy", 1); // Render jaise hosting ke peeche sahi IP milne ke liye
 
 app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_URL }));
+app.use(cors({
+  origin: "https://trip-planner-client.onrender.com",
+  credentials: true
+}));
 
 // Razorpay webhook ko raw body chahiye (signature check ke liye), isliye json se pehle
 app.use("/api/payments/webhook", express.raw({ type: "*/*" }));
